@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-    // Faqat POST so'rovlarni qabul qilamiz
     if (req.method !== 'POST') {
         return res.status(200).json({ status: 'Bot is running' });
     }
@@ -7,20 +6,18 @@ export default async function handler(req, res) {
     try {
         const { message, callback_query } = req.body;
 
-        // ================= SOZLAMALAR =================
-        const token = process.env.9283172833:AAGhzmY3m9nhRxzoRoKnsCF3GckE-8i2RtM;
-        const adminChatId = process.env.8832791564;
-        const cardNumber = process.env.4916 9917 2603 8834;
-        const cardHolder = process.env.Muhammadamin I.;
+        // ================= SOZLAMALAR (To'g'ridan-to'g'ri yozildi) =================
+        const token = '9283172833:AAGhzmY3m9nhRxzoRoKnsCF3GckE-8i2RtM';
+        const adminChatId = '8832791564';
+        const cardNumber = '4916 9917 2603 8834';
+        const cardHolder = 'Muhammadamin I.';
 
         if (!token) {
-            console.error('BOT_TOKEN topilmadi!');
             return res.status(500).json({ error: 'BOT_TOKEN missing' });
         }
 
         const apiUrl = `https://api.telegram.org/bot${token}/`;
 
-        // Yordamchi funksiya
         const sendMessage = (chatId, text, extra = {}) =>
             fetch(`${apiUrl}sendMessage`, {
                 method: 'POST',
@@ -38,8 +35,7 @@ export default async function handler(req, res) {
             const chatId = message.chat.id;
             await sendMessage(
                 chatId,
-                `Assalomu alaykum, ${message.from.first_name}!\n\n` +
-                `Botdan foydalanish uchun, iltimos, avval quyidagi sahifalarimizga obuna bo'ling:`,
+                `Assalomu alaykum, ${message.from.first_name}!\n\nBotdan foydalanish uchun, iltimos, avval quyidagi sahifalarimizga obuna bo'ling:`,
                 {
                     reply_markup: {
                         inline_keyboard: [
